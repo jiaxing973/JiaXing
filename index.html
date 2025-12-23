@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Our Story 💙</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+  /* ===== Music Button ===== */
+.music-control{
+  position:fixed;
+  top:20px;
+  right:20px;
+  width:48px;
+  height:48px;
+  background:rgba(37,99,235,.85);
+  color:#fff;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  z-index:1000;
+  box-shadow:0 6px 18px rgba(0,0,0,.2);
+}
+
+.music-control.playing{
+  animation:spin 3s linear infinite;
+}
+
+@keyframes spin{
+  from{transform:rotate(0);}
+  to{transform:rotate(360deg);}
+}
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Helvetica Neue",sans-serif;
+}
+
+body{
+  background:linear-gradient(to bottom,#cfe9ff,#ffffff);
+  color:#1a1a1a;
+}
+
+/* ===== Falling Hearts ===== */
+.hearts{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-1;
+}
+
+.heart{
+  position:absolute;
+  color:rgba(255,120,180,.6);
+  animation:fall linear infinite;
+}
+
+@keyframes fall{
+  from{transform:translateY(-10vh);opacity:0;}
+  10%{opacity:1;}
+  to{transform:translateY(110vh);opacity:0;}
+}
+
+/* ===== Hero ===== */
+.hero{
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+
+.hero h1{
+  font-size:3rem;
+  margin-bottom:1rem;
+}
+
+.hero p{
+  opacity:.8;
+}
+
+/* ===== Timeline ===== */
+.timeline{
+  max-width:900px;
+  margin:0 auto;
+  padding:4rem 2rem;
+  position:relative;
+}
+
+.timeline::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:50%;
+  transform:translateX(-50%);
+  width:3px;
+  height:100%;
+  background:#93c5fd;
+}
+
+.item{
+  display:flex;
+  margin-bottom:4rem;
+  position:relative;
+}
+
+.item:nth-child(even){
+  flex-direction:row-reverse;
+}
+
+.content{
+  width:45%;
+  background:#fff;
+  border-radius:20px;
+  box-shadow:0 10px 30px rgba(0,90,200,.15);
+  padding:1.4rem;
+}
+
+.date{
+  font-weight:600;
+  color:#2563eb;
+  margin-bottom:.6rem;
+}
+
+.photo{
+  width:100%;
+  aspect-ratio:4 / 5;
+  background:#f1f5f9;
+  border-radius:14px;
+  overflow:hidden;
+}
+
+.photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.text{
+  margin-top:1rem;
+  line-height:1.6;
+  color:#334155;
+}
+
+.dot{
+  width:18px;
+  height:18px;
+  background:#2563eb;
+  border-radius:50%;
+  position:absolute;
+  left:50%;
+  top:20px;
+  transform:translateX(-50%);
+}
+
+/* ===== Time ===== */
+.time{
+  text-align:center;
+  padding:4rem 2rem;
+}
+
+.time h2{
+  font-size:3rem;
+  color:#2563eb;
+}
+
+/* ===== Ending ===== */
+.ending{
+  text-align:center;
+  padding:2rem;
+  font-size:.9rem;
+  color:#475569;
+}
+
+/* ===== Letter Section ===== */
+.letter{
+  padding:5rem 1.5rem;
+  background:linear-gradient(to bottom,#ffffff,#eaf4ff);
+  display:flex;
+  justify-content:center;
+}
+
+.letter-card{
+  max-width:700px;
+  background:#ffffff;
+  border-radius:24px;
+  padding:2.5rem 2rem;
+  box-shadow:0 20px 40px rgba(0,90,200,.15);
+}
+
+.letter-card h2{
+  text-align:center;
+  margin-bottom:2rem;
+  color:#2563eb;
+  font-size:1.8rem;
+}
+
+.letter-card p{
+  line-height:1.9;
+  font-size:1.05rem;
+  color:#334155;
+  white-space:normal;
+}
+
+.signature{
+  margin-top:2.5rem;
+  text-align:right;
+  font-size:.95rem;
+  color:#475569;
+}
+
+/* ===== Mobile ===== */
+@media(max-width:768px){
+  .timeline::before{left:12px;}
+  .item,
+  .item:nth-child(even){
+    flex-direction:column;
+    margin-left:24px;
+  }
+  .content{
+    width:100%;
+  }
+  .dot{
+    left:12px;
+  }
+}
+</style>
+</head>
+
+<body>
+<!-- 🎶 Background Music -->
+<audio id="bgMusic" loop>
+  <source src="6mth photo/Joe Hisaishi - Summer.mp3" type="audio/mpeg">
+</audio>
+
+<div class="music-control" id="musicBtn">🎵</div>
+<div class="hearts" id="hearts"></div>
+
+<!-- Hero -->
+<section class="hero">
+  <div>
+    <h1>Happy 6 Months Anniversary 💖</h1>
+    <p>Every step with you matters</p><br>
+    <p>ꜜScroll down slowlyꜜ</p>
+  </div>
+</section>
+
+<!-- Timeline -->
+<section class="timeline">
+  <!-- 1 -->
+  <div class="item">
+    <span class="dot"></span>
+    <div class="content">
+      <div class="date">2025-06-4</div>
+      <div class="photo"><img src="6mthphoto/photo1.PNG"></div>
+      <div class="text">That day, everything started to change because I mustered up the courage to talk to you.</div>
+    </div>
+  </div>
+
+  <!-- 2 -->
+  <div class="item">
+    <span class="dot"></span>
+    <div class="content">
+      <div class="date">2025-06-12</div>
+      <div class="photo"><img src="6mthphoto/photo2.jpeg"></div>
+      <div class="text">This might be the first time I've expressed my love for you.</div>
+    </div>
+  </div>
+
+  <!-- 3 -->
+  <div class="item">
+    <span class="dot"></span>
+    <div class="content">
+      <div class="date">2024-06-15</div>
+      <div class="photo"><img src="6mthphoto/photo3.png"></div>
+      <div class="text">Do you remember our first video call? You were drunk that day 😂.</div>
+    </div>
+  </div>
+
+  <!-- 4 -->
+  <div class="item"><span class="dot"></span><div class="content">
+    <div class="date">2025-06-17</div>
+    <div class="photo"><img src="6mthphoto/photo4.jpeg"></div>
+    <div class="text">We barely spoke to each other that first time we met. Two introverted people had met.</div>
+  </div></div>
+
+  <!-- 5 -->
+  <div class="item"><span class="dot"></span><div class="content">
+    <div class="date">2025-06-24</div>
+    <div class="photo"><img src="6mthphoto/photo5.jpeg"></div>
+    <div class="text">I never imagined that we would decide to be together that night.</div>
+  </div></div>
+
+  <!-- 6 -->
+  <div class="item"><span class="dot"></span><div class="content">
+    <div class="date">2025-06-27</div>
+    <div class="photo"><img src="6mthphoto/photo.jpg"></div>
+    <div class="text">Strictly speaking, this was our first date, and it didn't go very well (because of your ex). I'm so jealous 🤬.</div>
+  </div></div>
+
+  <!-- 7 -->
+  <div class="item"><span class="dot"></span><div class="content">
+    <div class="date">2025-06-29</div>
+    <div class="photo"><img src="6mthphoto/photo6.jpeg"></div>
+    <div class="text">Our first real date (I was so happyhappy😝).</div>
+  </div></div>
+
+  <!-- 8 -->
+  <div class="item"><span class="dot"></span><div class="content">
+    <div class="date">2025-06-29</div>
+    <div class="photo"><img src="6mthphoto/photo7.jpeg"></div>
+    <div class="text">Our first phtotbooth.</div>
+  </div></div>
+
+  <!-- 9 -->
+  <div class="item"><span class="dot"></span><div class="content">
+    <div class="date">2025-7-6</div>
+    <div class="photo"><img src="6mthphoto/photo8.jpeg"></div>
+    <div class="text">My spirits had sunk to rock bottom, and I didn't know what to do. Thankfully, you were there for me through it all.</div>
+  </div></div>
+
+  <!-- 10 -->
+  <div class="item"><span class="dot"></span><div class="content">
+    <div class="date">2025-7-28</div>
+    <div class="photo"><img src="6mthphoto/photo9.jpeg"></div>
+    <div class="text">I hope we can never be apart.</div>
+  </div></div>
+
+  <!-- 11 -->
+  <div class="item"><span class="dot"></span><div class="content">
+    <div class="date">2025-7-8</div>
+    <div class="photo"><img src="6mthphoto/lp_image.jpeg"></div>
+    <div class="text">Kg Ma Lay is cooking</div>
+  </div></div>
+
+  <!-- 12 -->
+  <div class="item"><span class="dot"></span><div class="content">
+    <div class="date">2025-8-13</div>
+    <div class="photo"><img src="6mthphoto/IMG_1424.jpg"></div>
+    <div class="text">During our first day trip, I'd never felt this way about being in love before. Thank you.💖</div>
+  </div></div>
+
+  <!-- 13 -->
+  <div class="item"><span class="dot"></span><div class="content">
+    <div class="date">2025-9-24</div>
+    <div class="photo"><img src="6mthphoto/photo10.jpeg"></div>
+    <div class="text">Hello cutie🫦😂(ps:this is our 3 months anni.)</div>
+  </div></div>
+
+  <!-- 14 -->
+  <div class="item"><span class="dot"></span><div class="content">
+    <div class="date">2025-11-21</div>
+    <div class="photo"><img src="6mthphoto/photo11.jpg"></div>
+    <div class="text">Do you remember what happened in this day? 😭</div>
+  </div></div>
+
+  <!-- 15 -->
+  <div class="item"><span class="dot"></span><div class="content">
+    <div class="date">2025-12-16</div>
+    <div class="photo"><img src="6mthphoto/photo12.jpeg"></div>
+    <div class="text">I wanted to end with this photo for this timeline because it's so cute! Ahhh! (P.S.: Our love story will never end.)</div>
+  </div></div>
+
+</section>
+
+<section class="time">
+  <h2 id="days"></h2>
+  <p>Since June 24, 2025</p>
+</section>
+
+<!-- Letter -->
+<section class="letter">
+  <div class="letter-card">
+    <h2>To You 💌</h2>
+
+    <p>
+      Wel loh ya dk gift ty htet srr yin dr lay ka cot atwt memory shi say ml htin tl.<br><br>
+
+      D 6 months mr nrr ll pay kae dr ty atwt kyay zuu tin pr tl.<br>
+      Oakkar kyg sate shoke kae ya yin ll taung pan pr tl nor.<br><br>
+
+      Cot nk sa" twl" dk nae ka sa pee dok, Oakkar yae dark nay dk life htl alin ta khu yuk lr ta lo pl.<br>
+      A tat shin ya dk purpose ko ya twr ta lo pl<br>
+      ak lo ty khan srr ya lr tl.<br><br>
+
+      I know I'm not perfect,<br>
+      I make mistakes, and I'm not good enough,<br>
+      but there's at least one thing I'm sure of—<br>
+      I want to be serious about you.<br><br>
+
+      Nouk pine kya br ty pyit lr omm mr ll ma ti buu<br>
+      But oakkar cot nrr mr shi nay pay twr mr pr nor!!!<br><br>
+
+      Thank You<br>
+    for being a part of my life.
+    </p>
+
+    <div class="signature">
+      —— Cot anr mr shi nay pay mae tu: Oakkar
+    </div>
+  </div>
+</section>
+
+<section class="ending">
+  <p>This page is made only for you ❤️</p>
+</section>
+
+<script>
+/* Hearts */
+const hearts=document.getElementById("hearts");
+setInterval(()=>{
+  const h=document.createElement("div");
+  h.className="heart";
+  h.innerText="❤";
+  h.style.left=Math.random()*100+"vw";
+  h.style.fontSize=Math.random()*20+10+"px";
+  h.style.animationDuration=Math.random()*5+5+"s";
+  hearts.appendChild(h);
+  setTimeout(()=>h.remove(),10000);
+},300);
+
+/* Time */
+const start=new Date("2025-06-24");
+const days=Math.floor((new Date()-start)/86400000);
+document.getElementById("days").innerText=days+" Days";
+</script>
+<script>
+  const music = document.getElementById("bgMusic");
+  const musicBtn = document.getElementById("musicBtn");
+  
+  /* 第一次点击页面 → 自动播放 */
+  document.addEventListener("click", () => {
+    music.play().catch(()=>{});
+    musicBtn.classList.add("playing");
+  }, { once: true });
+  
+  /* 手动开关 */
+  musicBtn.onclick = (e) => {
+    e.stopPropagation();
+    if (music.paused) {
+      music.play();
+      musicBtn.classList.add("playing");
+    } else {
+      music.pause();
+      musicBtn.classList.remove("playing");
+    }
+  };
+  </script>
+
+</body>
+</html>
